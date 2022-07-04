@@ -19,7 +19,7 @@ def xor(block, iv):
 
 
 def MouseInfoMsgPack(data):
-    key = b'W0Juh4cFJSYPkebJB9WpswNF51oa6Gm7'
+    key = 'W0Juh4cFJSYPkebJB9WpswNF51oa6Gm7'
     iv = data[:32]
     array = data[32:]
     sg = pprp.data_source_gen(array, 32)
