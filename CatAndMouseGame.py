@@ -22,7 +22,6 @@ def MouseInfoMsgPack(data):
     key = b'W0Juh4cFJSYPkebJB9WpswNF51oa6Gm7'
     iv = data[:32]
     array = data[32:]
-    print(array, iv)
     sg = pprp.data_source_gen(array, 32)
     dg = ASEDecrypt(key, sg, iv)
     decrypted = pprp.decrypt_sink(dg, 32)
