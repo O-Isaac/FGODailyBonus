@@ -75,7 +75,8 @@ def SendMessageToAdmin(message):
 
     if WEBHOOK:
         nowtime = mytime.GetFormattedNowTime()
-        res = requests.post(WEBHOOK, json={
+        
+        requests.post(WEBHOOK, json={
             "embeds": [
                 {
 
@@ -93,7 +94,6 @@ def SendMessageToAdmin(message):
                 }
             ]
         })
-    print(res.text)
        
        
 
