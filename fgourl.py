@@ -75,7 +75,6 @@ def SendMessageToAdmin(message):
 
     if WEBHOOK:
         nowtime = mytime.GetFormattedNowTime()
-        
         requests.post(WEBHOOK, json={
             "embeds": [
                 {
@@ -95,9 +94,6 @@ def SendMessageToAdmin(message):
             ]
         })
        
-       
-
-
 # ===== End =====
 
 
@@ -189,6 +185,3 @@ def gameData():
             WriteConf(json.dumps(new_data))
         else:
             SendMessageToAdmin('Update failed')
-
-
-SendMessageToAdmin("Hello")
