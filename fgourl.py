@@ -93,7 +93,7 @@ def SendMessageToAdmin(message):
             ]
         })
 
-        print(res.text)
+        print(message)
        
 # ===== End =====
 
