@@ -5,6 +5,7 @@ import re
 import requests
 import mytime
 import CatAndMouseGame
+import os
 
 requests.urllib3.disable_warnings()
 session = requests.Session()
@@ -70,13 +71,31 @@ TelegramAdminId = ''
 
 
 def SendMessageToAdmin(message):
-    if TelegramBotToken != 'nullvalue':
+    WEBHOOK = os.getenv('DISCORD_WEBHOOK')
+
+    if WEBHOOK:
         nowtime = mytime.GetFormattedNowTime()
-        url = f'https://api.telegram.org/bot{TelegramBotToken}/sendMessage?chat_id={TelegramAdminId}&parse_mode=markdown&text=_{nowtime}_\n{message}'
-        result = json.loads(requests.get(url, verify=False).text)
-        if not result['ok']:
-            print(result)
-            print(message)
+        res = requests.post(WEBHOOK, json={
+            "embeds": [
+                {
+
+                    "type": "rich",
+                    "title": "Fate/Grand Order Daily Bonus",
+                    "description": f"```\n{message}\n```",
+                    "color": 5814783,
+                    "timestamp": nowtime,
+                    "footer": {
+                        "text": "Login"
+                    },
+                    "thumbnail": {
+                        "url": "https://static.wikia.nocookie.net/fategrandorder/images/1/16/SaintQuartz.png/revision/latest?cb=20210726035749&path-prefix=es"
+                    }
+                }
+            ]
+        })
+    print(res.text)
+       
+       
 
 
 # ===== End =====
@@ -170,3 +189,6 @@ def gameData():
             WriteConf(json.dumps(new_data))
         else:
             SendMessageToAdmin('Update failed')
+
+
+SendMessageToAdmin("Hello")

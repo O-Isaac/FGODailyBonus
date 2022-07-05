@@ -19,17 +19,17 @@ fgourl.TelegramAdminId = os.environ['TGAdminId']
 fgourl.github_token_ = os.environ['GithubToken']
 fgourl.github_name_ = os.environ['GithubName']
 UA = os.environ['UserAgent']
+
 if UA != 'nullvalue':
     fgourl.user_agent_ = UA
-
 
 def main():
     fgourl.SendMessageToAdmin(f'铛铛铛( \`д´) *{mytime.GetNowTimeHour()}点* 了')
     if userNums == authKeyNums and userNums == secretKeyNums:
         fgourl.ReadConf()
         fgourl.gameData()
-        print(f'待签到: {userNums}个')
-        res = '【登录信息】\n'
+        print(f'userNums: {userNums}个')
+        res = '【Access】\n'
         for i in range(userNums):
             try:
                 instance = user(userIds[i], authKeys[i], secretKeys[i])
@@ -45,7 +45,7 @@ def main():
         fgourl.UploadFileToRepo(mytime.GetNowTimeFileName(), res, mytime.GetNowTimeFileName())
         fgourl.SendMessageToAdmin(res)
     else:
-        print('账号密码数量不匹配')
+        print('Auth mismatch!')
 
 
 if __name__ == '__main__':
