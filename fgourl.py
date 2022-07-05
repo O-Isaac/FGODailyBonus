@@ -75,10 +75,9 @@ def SendMessageToAdmin(message):
 
     if WEBHOOK:
         nowtime = mytime.GetFormattedNowTime()
-        requests.post(WEBHOOK, json={
+        res = requests.post(WEBHOOK, json={
             "embeds": [
                 {
-
                     "type": "rich",
                     "title": "Fate/Grand Order Daily Bonus",
                     "description": f"```\n{message}\n```",
@@ -93,6 +92,8 @@ def SendMessageToAdmin(message):
                 }
             ]
         })
+
+        print(res.text)
        
 # ===== End =====
 
