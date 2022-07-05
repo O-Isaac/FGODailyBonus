@@ -19,14 +19,14 @@ def xor(block, iv):
 
 
 def MouseInfoMsgPack(data):
-    key = b'W0Juh4cFJSYPkebJB9WpswNF51oa6Gm7'
+    key = b'nn33CYId2J1ggv0bYDMbYuZ60m4GZt5P'
     iv = data[:32]
     array = data[32:]
     sg = pprp.data_source_gen(array, 32)
     dg = ASEDecrypt(key, sg, iv)
     decrypted = pprp.decrypt_sink(dg, 32)
     decbytes = gzip.decompress(decrypted)
-    return decbytes[0xD:0x1A].decode('utf-8')
+    return decbytes[0xD:0x16].decode('utf-8')
 
 
 if __name__ == "__main__":
